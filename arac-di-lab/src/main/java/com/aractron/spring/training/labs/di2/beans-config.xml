@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+
+	<bean id="userFacade"
+		class="com.aractron.spring.training.service.impl.UserFacadeMapImpl"
+		scope="singleton">
+		<constructor-arg ref="userMap" />
+	</bean>
+
+	<util:map id="userMap">
+		<entry key="jyotsna:password" value="com.aractron.spring.training.domain.Student" />
+		<entry key="student2:student" value="com.aractron.spring.training.domain.Student" />
+		<entry key="instructor1:faculty" value="com.aractron.spring.training.domain.Faculty" />
+		<entry key="fictional:example">
+			<null />
+		</entry>
+	</util:map>
+
+	<bean id="registrar"
+		class="com.aractron.spring.training.service.impl.CourseRegistrationFacadeBasicImpl"
+		scope="prototype" />
+		
+	<!-- 
+	<bean id = "course" class = "com.aractron.spring.training.domain.Course" >
+		<property name="name" value="Introduction to Spring" />
+		<property name="creditHours" value="1.0" />
+	</bean>
+	<bean name = "innerBeans/session" class = "com.aractron.spring.training.domain.CourseSession">
+		<property name = "course" ref="course" />
+		<property name="term" value="Fall" />
+	</bean>
+ 	-->
+
+	<bean name="innerBeans/session1" class="com.aractron.spring.training.domain.CourseSession">
+		<property name="course">
+			<bean class="com.aractron.spring.training.domain.Course">
+				<property name="name" value="Inner Beans" />
+				<property name="creditHours" value="1.0" />
+			</bean>
+		</property>
+		<property name="term" value="Winter" />
+	</bean>
+</beans>

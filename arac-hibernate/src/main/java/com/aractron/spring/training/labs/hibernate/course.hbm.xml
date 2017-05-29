@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.aractron.spring.training.domain">
+    <class name="Course" table="COURSE">
+        <id name="id" column="COURSE_ID">
+            <generator class="native"/>
+        </id>
+        <!-- 
+        	Why don't the below property mappings include the column attributes, for example: <property name="name" column="NAME"/>
+        	Without the column attribute, Hibernate by default uses the property name as the column name. This works when the property
+        	is not a reserved keyword in the DB. If it's a reserved word, then you'll need to so you will need to map it explicitly.  
+        -->
+        <property name="name"/>
+        <property name="description"/>
+        <property name="department"/>
+        <property name="creditHours"/>
+        <property name="level" type="com.aractron.spring.training.domain.hibernate.StudentClassificationUserType"/>
+	</class>
+</hibernate-mapping>

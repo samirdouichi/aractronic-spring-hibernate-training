@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<!-- We are explicitly listing the business facade beans for illustrative 
+		purposes. These could be component scanned. -->
+	<bean id="courseManagementFacade"
+		class="com.aractron.spring.training.service.impl.CourseManagementFacadeDaoImpl">
+		<property name="courseDao" ref="courseDao" />
+		<property name="courseSessionDao" ref="courseSessionDao" />
+	</bean>
+
+	<bean id="courseRegistrationFacade"
+		class="com.aractron.spring.training.service.impl.CourseRegistrationFacadeDaoImpl">
+		<property name="courseSessionDao" ref="courseSessionDao" />
+		<property name="studentDao" ref="studentDao" />
+	</bean>
+
+	<bean id="userFacade"
+		class="com.aractron.spring.training.service.impl.UserFacadeDaoImpl">
+		<property name="facultyDao" ref="facultyDao" />
+		<property name="studentDao" ref="studentDao" />
+	</bean>
+
+	<bean id="courseSessionFactory" class="com.aractron.spring.training.service.impl.CourseSessionFactoryImpl" />
+</beans>
